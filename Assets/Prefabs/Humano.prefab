@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1039042017774764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.90726984, y: -1.7662995, z: 0}
+  m_LocalPosition: {x: 0.45, y: -2.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,7 +104,10 @@ MonoBehaviour:
   currentPosition: 0
   offPosition: 0.2
   timeToWait: 1
-  speed: 10
+  speed: 50
+  aimAccuracy: 0.2
+  Bullet: {fileID: 1348960905325674, guid: 2d972026f7397884197e4ed7bd5c5adb, type: 2}
+  fireDelay: 1
   patrulha:
   - {x: 0, y: 0}
   - {x: 3, y: 3}
