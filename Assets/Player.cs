@@ -69,7 +69,9 @@ public class Player : MonoBehaviour {
 		if (Input.GetButtonDown ("Fire2")) {
 			interact = 0.4f;
 		}
-
+		if (Input.GetButton ("Fire3")) {
+			herbEffect = herbDuration;
+		}
 	}
 	public void TakeDamage(int amount){
 		HP = HP - amount;

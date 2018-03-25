@@ -22,5 +22,8 @@ public class Logo : MonoBehaviour {
 		} else {
 			logo.color = new Color (logo.color.r, logo.color.g, logo.color.b, logo.color.a - Time.deltaTime/5.0f);
 		}
+		if (timing < 2) {
+			logo.color = new Color (logo.color.r, logo.color.g - Time.deltaTime/2.0f, logo.color.b, logo.color.a);
+		}
 	}
 }
