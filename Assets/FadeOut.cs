@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FadeOut : MonoBehaviour {
-	private float tempo;
+	public float tempo;
 	private SpriteRenderer sr;
 	private Color originalColor;
-	private Color finalColor;
+	public Color finalColor;
 	private float elapsed = 0;
-	private bool run = false;
+	public bool run = false;
 	// Use this for initialization
 	void Start () {
 		sr = GetComponent<SpriteRenderer> ();
