@@ -14,3 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level1.unity
     guid: a8764238f71f7954a9eb7a2a338528c3
+  - enabled: 1
+    path: Assets/GameOver.unity
+    guid: 2a1ebeb2936f43b4cb0c9bcec86885bc
+  - enabled: 1
+    path: Assets/Creditos.unity
+    guid: 490a125e8fc87384fbe183a30138d208

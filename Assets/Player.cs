@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 	private Rigidbody2D rb;
@@ -17,8 +18,21 @@ public class Player : MonoBehaviour {
 	private bool isZumbi = true;
 	private Animator ani;
 	public GameObject BloodSplash;
+	private GameObject vidahud1;
+	private GameObject vidahud2;
+	private GameObject vidahud3;
+	private GameObject vidahud4;
+	private GameObject vidahud5;
 	private float interact = 0;
 	// Use this for initialization
+	void Awake(){
+		vidahud1 = GameObject.Find ("vida1");
+		vidahud2 = GameObject.Find ("vida2");
+		vidahud3 = GameObject.Find ("vida3");
+		vidahud4 = GameObject.Find ("vida4");
+		vidahud5 = GameObject.Find ("vida5");
+
+	}
 	void Start () {
 		ani = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody2D> ();
@@ -27,6 +41,7 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Vidahud();
 		if (interact > 0){
 			interact -= Time.deltaTime;
 			if(interact < 0){
@@ -42,7 +57,10 @@ public class Player : MonoBehaviour {
 			return;
 		}
 		if (HP <= 0) {
+			ani.SetTrigger ("dead");
 			dead = true;
+			SceneManager.LoadScene ("GameOver");
+			return;
 		}
 		//Movimento:
 		float hor = Input.GetAxis ("Horizontal");
@@ -64,7 +82,7 @@ public class Player : MonoBehaviour {
 			ani.SetInteger ("Direcao", 1);
 		}
 		if (Input.GetButtonDown ("Fire1")) {
-			ani.SetTrigger ("Atk");
+			Attack ();
 		}
 		if (Input.GetButtonDown ("Fire2")) {
 			interact = 0.4f;
@@ -72,6 +90,7 @@ public class Player : MonoBehaviour {
 		if (Input.GetButton ("Fire3")) {
 			herbEffect = herbDuration;
 		}
+
 	}
 	public void TakeDamage(int amount){
 		HP = HP - amount;
@@ -89,8 +108,8 @@ public class Player : MonoBehaviour {
 				GameObject bs = Instantiate (BloodSplash);
 				bs.transform.position = other.transform.position;
 				Destroy (bs, bs.GetComponent<ParticleSystem> ().main.duration + bs.GetComponent<ParticleSystem> ().main.startLifetime.constantMax);
-				other.gameObject.GetComponent<FadeOut> ().Run (0.5f, new Color (1.0f, 0, 0));
-				Destroy (other.gameObject, 0.5f);
+				other.gameObject.GetComponent<FadeOut> ().Run (1, new Color (1.0f, 0, 0));
+				Destroy (other.gameObject, 1f);
 				desireForMeat = 0;
 			}
 		}
@@ -100,6 +119,11 @@ public class Player : MonoBehaviour {
 				other.gameObject.GetComponent<FadeOut> ().Run (1.0f, new Color (0, 0, 1.0f));
 				Destroy (other.gameObject, 1.0f);
 			}
+		}
+		if (other.tag == "Bullet") {
+			other.gameObject.GetComponent<Bullet> ().AutoDestroy ();
+			other.tag = "exBullet";
+			TakeDamage (1);
 		}
 	}
 	public float GetDesireForMeat(){
@@ -114,5 +138,25 @@ public class Player : MonoBehaviour {
 			return true;
 		}
 		return false;
+	}
+	public void Stop(){
+		rb.velocity = new Vector2 (0, 0);
+	}
+	void Vidahud(){
+		if (HP <= 4) {
+			vidahud5.GetComponent<SpriteRenderer> ().enabled = false;
+		}
+		if (HP <= 3) {
+			vidahud4.GetComponent<SpriteRenderer> ().enabled = false;
+		}
+		if (HP <= 2) {
+			vidahud3.GetComponent<SpriteRenderer> ().enabled = false;
+		}
+		if (HP <= 1) {
+			vidahud2.GetComponent<SpriteRenderer> ().enabled = false;
+		}
+		if (HP <= 0) {
+			vidahud1.GetComponent<SpriteRenderer> ().enabled = false;
+		}
 	}
 }

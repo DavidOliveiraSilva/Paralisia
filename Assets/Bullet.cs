@@ -26,13 +26,8 @@ public class Bullet : MonoBehaviour {
 			AutoDestroy ();
 		}
 	}
-	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag == "Player") {
-			coll.gameObject.GetComponent<Player> ().TakeDamage (1);
-			AutoDestroy ();
-		}
-	}
-	void AutoDestroy(){
+
+	public void AutoDestroy(){
 		ps.Stop ();
 		sr.enabled = false;
 		cc.enabled = false;
