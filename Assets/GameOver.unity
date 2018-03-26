@@ -452,6 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1316528557}
   - component: {fileID: 1316528556}
+  - component: {fileID: 1316528555}
   m_Layer: 0
   m_Name: fundp
   m_TagString: Untagged
@@ -459,6 +460,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1316528555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1316528554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0440cd41a8d6c41bc199c3111274e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &1316528556
 SpriteRenderer:
   m_ObjectHideFlags: 0

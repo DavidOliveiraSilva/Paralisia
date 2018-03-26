@@ -109,6 +109,7 @@ public class Player : MonoBehaviour {
 				bs.transform.position = other.transform.position;
 				Destroy (bs, bs.GetComponent<ParticleSystem> ().main.duration + bs.GetComponent<ParticleSystem> ().main.startLifetime.constantMax);
 				other.gameObject.GetComponent<FadeOut> ().Run (1, new Color (1.0f, 0, 0));
+				other.gameObject.GetComponent<Human> ().ads.Play ();
 				Destroy (other.gameObject, 1f);
 				desireForMeat = 0;
 			}
@@ -119,6 +120,9 @@ public class Player : MonoBehaviour {
 				other.gameObject.GetComponent<FadeOut> ().Run (1.0f, new Color (0, 0, 1.0f));
 				Destroy (other.gameObject, 1.0f);
 			}
+		}
+		if (other.tag == "Zumbi") {
+			other.gameObject.GetComponent<AudioSource> ().Play ();
 		}
 		if (other.tag == "Bullet") {
 			other.gameObject.GetComponent<Bullet> ().AutoDestroy ();

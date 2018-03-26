@@ -10,8 +10,10 @@ public class MigMachine : MonoBehaviour {
 	private ParticleSystem glow;
 	private ParticleSystem.MainModule psmain;
 	public GameObject Seringa;
+	public AudioSource ads;
 	// Use this for initialization
 	void Start () {
+		ads = GetComponent<AudioSource> ();
 		secSR = sec.GetComponent<SpriteRenderer> ();
 		glow = GetComponentInChildren<ParticleSystem> ();
 		psmain = glow.main;
@@ -28,6 +30,7 @@ public class MigMachine : MonoBehaviour {
 			herbs = 0;
 			GameObject ser = Instantiate (Seringa);
 			ser.transform.position = new Vector3 (transform.position.x, transform.position.y - 3, transform.position.z);
+			ads.Play ();
 		}
 	}
 	void OnCollisionStay2D(Collision2D coll){

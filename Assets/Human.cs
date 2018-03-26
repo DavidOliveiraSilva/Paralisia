@@ -21,12 +21,15 @@ public class Human : MonoBehaviour {
 	private GameObject Arm;
 	private GameObject shoulder;
 	public bool hasArm = false;
+	public AudioSource ads;
+	private bool sawplayer = false;
 	void Awake(){
 		player = GameObject.Find ("Tyler");
 	}
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+		ads = GetComponent<AudioSource> ();
 		if (gameObject.GetComponentInChildren<Arm> () != null) {
 			hasArm = true;
 			Arm = gameObject.GetComponentInChildren<Arm> ().gameObject;
@@ -79,6 +82,11 @@ public class Human : MonoBehaviour {
 	}
 
 	public bool IsSeeingThePlayer(){
+		
+		if (!sawplayer) {
+			ads.Play ();
+		}
+		sawplayer = true;
 		Vector2 humanPos = new Vector2(transform.position.x, transform.position.y);
 		Vector2 tylerPos = new Vector2(player.transform.position.x, player.transform.position.y);
 		RaycastHit2D ray = Physics2D.Linecast(humanPos, tylerPos, 9);
