@@ -9,6 +9,7 @@ TagManager:
   - Arma
   - Bullet
   - exBullet
+  - Zumbi
   layers:
   - Default
   - TransparentFX
